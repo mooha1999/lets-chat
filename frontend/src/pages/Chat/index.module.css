@@ -1,0 +1,56 @@
+.loading_container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messages {
+  list-style-type: none;
+  padding: 1rem 10rem;
+  background-color: cornflowerblue;
+  height: 100vh;
+}
+.messages li {
+  margin: 3px 1rem;
+  word-break: break-all;
+  border-radius: 1rem;
+  padding: 10px;
+}
+.reciever {
+  float: right;
+  clear: both;
+  width: fit-content;
+  text-align: end;
+  background-color: rgba(0, 0, 255, 0.612);
+}
+.sender {
+  float: left;
+  clear: both;
+  width: fit-content;
+  text-align: start;
+  background-color: violet;
+}
+.form {
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  padding: 0.25rem;
+}
+.input {
+  flex-grow: 9.5;
+  border-radius: 1rem;
+  line-height: 2rem;
+  margin: 0.25rem;
+  padding: 0 1rem;
+}
+.input:focus {
+  outline: none;
+}
+.form button {
+  flex-grow: 0.5;
+  border-radius: 1rem;
+}

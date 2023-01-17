@@ -1,0 +1,7 @@
+{
+  "env": {
+    "DB_USER": "mooha",
+    "DB_PASSWORD": "ahly4ever",
+    "DB_NAME": "smart-home"
+  }
+}
