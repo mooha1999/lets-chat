@@ -1,8 +1,10 @@
 import { Router } from "express";
-import UsersController from "../controllers/users-controller";
+import UsersControllers from "../controllers/users-controller";
 const usersRouter = Router();
-usersRouter.post('/login', UsersController.login);
+usersRouter.post('/login', UsersControllers.login);
 
-usersRouter.post('/signup', UsersController.signup);
+usersRouter.post('/signup', UsersControllers.signup);
+
+usersRouter.get('/friends/:uid', UsersControllers.getAllUsers);
 
 export default usersRouter;

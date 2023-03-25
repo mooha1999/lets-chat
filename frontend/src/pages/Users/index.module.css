@@ -8,9 +8,10 @@
   align-items: center;
 }
 .user{
+  list-style: none;
   font-size: larger;
   border: 1px solid black;
-  width: 50%;
+  /* width: 50%; */
   line-height: 2rem;
   text-align: center;
   border-radius: 10px;

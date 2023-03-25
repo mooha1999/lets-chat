@@ -1,13 +1,11 @@
 .navigation{
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
-  z-index: 1;
 }
 .navIcons{
   list-style-type: none;
   display: flex;
-  /* flex-wrap: wrap; */
   justify-content: space-evenly;
   border: 1px solid black;
   height: inherit;
@@ -23,7 +21,7 @@
 }
 @media screen and (min-width: 600px) {
   .navigation{
-    bottom: auto;
+    bottom: 0;
     left: 0;
     width: fit-content;
     height: 100%;

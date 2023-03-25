@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const useHttpRequest = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown>();
   const activeHttpRequests = useRef<AbortController[]>([]);
-  const sendRequest = useCallback(async (
+  const sendRequest = async (
     url: string,
     method: 'POST' | 'GET' = 'GET',
     body?: BodyInit,
@@ -23,6 +23,7 @@ export const useHttpRequest = () => {
         reqCtrl => reqCtrl !== httpAbortController
       );
       if (!response.ok) {
+        alert(data.message);
         throw new Error(data.messsage);
       }
 
@@ -32,15 +33,15 @@ export const useHttpRequest = () => {
     } catch (error: any) {
       setIsLoading(false);
       setError(error.message);
-      
+
       throw error;
     }
-  }, []);
+  };
   useEffect(() => {
     return () => {
       activeHttpRequests.current.forEach(val => val.abort());
     }
-  }, [])
+  }, []);
   const clearError = () => setError(undefined);
   return { isLoading, error, sendRequest, clearError };
 }
