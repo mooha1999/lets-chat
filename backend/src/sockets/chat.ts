@@ -1,17 +1,12 @@
 import { Server } from "socket.io";
+
 import ClientToServerEvents from "../interfaces/clien-to-server-events";
+import emitMessage from "./socket-controllers/emit-message";
+import joinRoom from "./socket-controllers/join-room";
 
 export default function chatSocket(io: Server<ClientToServerEvents>): void {
   io.on('connection', (socket) => {
-    socket.on('auth', (username, reciever) => {
-      // const roomID = uuidv4();
-      const key = [username, reciever].sort().join('');
-      socket.join(key);
-    });
-    socket.on('msg', async (data) => {
-      const key = [data.sender, data.reciever].sort().join('');
-      //TODO save the message  
-      socket.to(key).emit('msg', data);
-    });
+    socket.on('auth', joinRoom);
+    socket.on('msg', emitMessage);
   });
 }
