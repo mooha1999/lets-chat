@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import { IUser } from "../interfaces/user";
+import jwt from "jsonwebtoken";
+
+import IUserSchema from "../interfaces/iuser-schema";
 import UserModel from "../models/user";
 import HttpError from '../models/http-error';
-import jwt from "jsonwebtoken";
 
 class UsersController{
   public static login = async (req: Request, res: Response, next: NextFunction) => {
-    const {username, password} = req.body as IUser;
+    const {username, password} = req.body as IUserSchema;
     // let user, token;
     try{
       const user = await UserModel.findOne({username, password}).exec();
@@ -23,7 +24,7 @@ class UsersController{
     res.status(200).json({username});
   }
   public static signup = async (req: Request, res: Response, next: NextFunction) => {
-    const {username, password} = req.body as IUser;
+    const {username, password} = req.body as IUserSchema;
     try {
       const existingUser = await UserModel.findOne({username}).exec();
       if(existingUser){
