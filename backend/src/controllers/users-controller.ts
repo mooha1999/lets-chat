@@ -53,7 +53,7 @@ class UsersController{
     }catch(err){
       return next(new HttpError('Something went wrong could not load users, try again later', 500))
     }
-    res.json({users: friends});
+    res.status(200).json({users: friends});
   }
   private static createToken = (id: string) => {
     const token = jwt.sign({
