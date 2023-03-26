@@ -10,14 +10,12 @@ class UsersController{
     const {username, password} = req.body as IUserSchema;
     // let user, token;
     try{
-      const user = await UserModel.findOne({username, password}).exec();
+      const user = await UserModel.findOne({username, password});
       if(!user){
         return next(new HttpError('Invalid Credentials', 403));
       }
       //TODO decrypt the password and create a token
-      // token = jwt.sign({
-      //   userID: user.id
-      // }, process.env.JWT_KEY as string, {expiresIn: '1h'});
+      //token = this.createToken(username)
     }catch(err){
       return next(new HttpError('Something went wrong, could not login', 500));
     }
@@ -26,11 +24,12 @@ class UsersController{
   public static signup = async (req: Request, res: Response, next: NextFunction) => {
     const {username, password} = req.body as IUserSchema;
     try {
-      const existingUser = await UserModel.findOne({username}).exec();
+      const existingUser = await UserModel.findOne({username});
       if(existingUser){
         return next(new HttpError('Username already taken', 500));
       }
       //TODO Encrypt the password and create a token
+      //token = this.createToken(username)
       const user = new UserModel({
         username,
         password,
